@@ -1,0 +1,246 @@
+<div align="center">
+
+<h1>UDM-GRPO: Stable and Efficient Group Relative Policy Optimization for Uniform Discrete Diffusion Models</h1>
+
+<p align="center">
+<a href="https://arxiv.org/abs/2510.24717"><img src="https://img.shields.io/badge/ArXiv-2510.24717-%23840707.svg" alt="ArXiv"></a>
+<a href="https://huggingface.co/collections/BAAI/ursa"><img src="https://img.shields.io/badge/🤗 Weights-BAAI/URSA-rgb(166,109,59).svg" alt=""></a>
+<a href="https://huggingface.co/spaces/BAAI/nova-d48w1024-osp480"><img src="https://img.shields.io/badge/🤗 Demo-TI2V-%26840707.svg" alt="TI2VDemo"></a>
+<a href="http://bitterdhg.github.io/URSA_page"><img src="https://img.shields.io/badge/Project-URSA-%237CB4F7.svg" alt="Project"></a>
+</p>
+
+<p align="center">1
+
+[Jiaqi Wang](https://scholar.google.com/citations?user=EFOtaJsAAAAJ&hl=zh-CN)<sup>1,2*</sup>, [Haoge Deng](https://scholar.google.com/citations?user=S2sbvjgAAAAJ&hl=en)<sup>2*</sup>, [Ting Pan](https://scholar.google.com/citations?&user=qQv6YbsAAAAJ)<sup>2*</sup>,  [Yang Liu](https://scholar.google.com/citations?user=9JcQ2hwAAAAJ&hl)<sup>2</sup>, [Chengyuan Wang](https://scholar.google.com/citations?user=VsJ39HMAAAAJ)<sup>2</sup>, [Fan Zhang](https://scholar.google.com/citations?user=VsJ39HMAAAAJ)<sup>2</sup>, [Yonggang Qi](https://scholar.google.com.tw/citations?user=pQNpf7cAAAAJ&hl=zh-CN&oi=ao)<sup>1†</sup>, [Xinlong Wang](https://scholar.google.com/citations?user=DPz0DjYAAAAJ&hl)<sup>2†</sup><br>
+<!-- [Chunhua Shen](https://scholar.google.com/citations?user=Ljk2BvIAAAAJ&hl)<sup>3</sup>, [Shiguang Shan](https://scholar.google.com/citations?user=Vkzd7MIAAAAJ&hl)<sup>2</sup>, [Zhaoxiang Zhang](https://scholar.google.com/citations?user=qxWfV6cAAAAJ&hl)<sup>1†</sup>, [Xinlong Wang](https://scholar.google.com/citations?user=DPz0DjYAAAAJ&hl)<sup>4†</sup><br> -->
+
+[BUPT](https://www.bupt.edu.cn/)<sup>1</sup>, [BAAI](https://www.baai.ac.cn/en)<sup>2</sup><br>
+<sup>*</sup> Equal Contribution, <sup>†</sup> Corresponding Author
+<br><br><image src="assets/UDM-GRPO_pipeline.png"/>
+<br><br><image src="assets/GenEval_result.png"/>
+</div>
+
+we propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our method is guided by two key insights: (i) treating the final clean sample as the action provides more accurate and stable optimization signals; and (ii) reconstructing trajectories via the diffusion forward process better aligns probability paths with the pretraining distribution. Additionally, we introduce two strategies, Reduced-Step and CFG-Free, to further improve training efficiency. **UDM-GRPO** significantly improves base model, [URSA](https://github.com/baaivision/URSA?tab=readme-ov-file), performance across multiple T2I tasks. 
+
+## 🚀 News
+- ```[Feb 2026]``` Accepted by ICLR 2026 [[OpenReview]](https://openreview.net/forum?id=GFU5yCbILk).
+<!-- - ```[Jan 2026]``` Released [Training Guide](./docs/training.md).
+- ```[Oct 2025]``` 🎉 URSA is part of [Emu3.5](https://github.com/baaivision/Emu3.5) as DiDA (Discrete Diffusion Adaptation)!
+- ```[Oct 2025]``` Released <a href="https://huggingface.co/spaces/BAAI/nova-d48w1024-osp480"><b>TI2V</b></a> 🤗 Demo.
+- ```[Oct 2025]``` Released [Paper](https://arxiv.org/abs/2510.24717) & [Project Page](http://bitterdhg.github.io/URSA_page) & [Evaluation Guide](./docs/evaluation.md). -->
+
+## ✨Hightlights
+
+- 🥇 **Novel Approach**: Correcting the action and trajectory to achieve the first method to integret UDM with RL.
+- 🥈 **SOTA Performance**: State-of-the-art performance across multiple T2I benchmarks.
+- 🥉 **High efficiency**: Reduced-Step and CFG-Free training strategy.
+
+
+
+## 🔧 Installation
+<a id="installation"></a>
+
+### 1. Environment Set Up
+Clone this repository to local disk and install:
+```bash
+git clone https://github.com/baaivision/UDMGRPO.git
+
+cd UDMGRPO 
+
+conda create -n UDMGRPO python=3.10
+
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+
+pip install -e .
+
+pip install torch==2.5.1 xformers --index-url https://download.pytorch.org/whl/cu124
+
+pip install psutil==7.0.0, flash-attn==2.7.4.post1 --no-build-isolation
+
+```
+
+
+### 2. Model Download
+
+| Model | Resolution| Download |
+|:-----:|:----------:|:------:|
+| URSA-1.7B-512 | 512x512 | [🤗 Hugging Face](https://huggingface.co/BAAI/URSA-1.7B-FSQ320)|
+
+
+
+### 3. Reward Preparation
+
+
+
+#### 1.PickScore
+You can run the training code to download the [PickScore Model](https://huggingface.co/yuvalkirstain/PickScore_v1) or Pre-download.
+
+#### 2. GenEval
+
+##### Pip and download the mask2former
+```bash
+# First
+pip install openmim==0.3.9 open-clip-torch==2.31.0 numpy==1.26.0 opencv-python==4.11.0.86 clip-benchmark==1.6.1
+
+
+# Then
+mim install mmengine mmcv-full==1.7.2 --no-build-isolation
+git clone https://github.com/open-mmlab/mmdetection.git
+cd mmdetection; git checkout 2.x
+pip install -e . --no-build-isolation
+
+
+# Then
+mv ../raw_rl_data/object_names.txt .
+
+wget https://download.openmmlab.com/mmdetection/v2.0/mask2former/mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco/mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco_20220504_001756-743b7d99.pth
+
+```
+#####  download the [timm/vit_large_patch14_clip_224.openai🤗](https://huggingface.co/timm/vit_large_patch14_clip_224.openai) and change the model_path in diffnext.rewards.reward_image.GenEvalScorer to your path
+
+
+the mmdetection format should be
+```bash
+mmdetection/
+│
+├── configs/
+│   └── mask2former/
+│       └── mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco.py
+│
+├── mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco.pth
+│
+├── vit_large_patch14_clip_224.openai/
+│   ├── open_clip_config.json
+│   ├── pytorch_model.bin   
+│   └── ...
+│
+└── object_names.txt
+```
+
+#### 3. OCR 
+Install the paddle-ocr and the model:
+```
+pip install paddlepaddle-gpu==2.6.2
+pip install paddleocr==2.9.1
+pip install python-Levenshtein
+
+from paddleocr import PaddleOCR
+ocr = PaddleOCR(use_angle_cls=False, lang="en", use_gpu=False, show_log=False)
+```
+change the ocr path in diffnext.rewards.reward_image.OCRScorer to your path
+
+## 🤖 Data Preparation
+
+GenEval 
+```bash
+# First
+python  raw_rl_data/geneval/cache.py
+
+# Then Change the train_dataloader.params.dataset  in  ursa_1.7b_ibq512.yaml
+```
+OCR and PickScore in the same way.
+
+
+
+## 🤖 Training
+<a id="training"></a>
+
+### 1. Single-node training
+```bash
+cd diffnext
+
+accelerate launch --config_file accelerate_configs/4_nodes_deepspeed.yaml \
+--machine_rank 0 --num_machines 1 --num_processes 8 \
+scripts/train.py \
+config="configs/geneval_grpo/ursa_1.7b_ibq512.yaml" \
+experiment.name="ursa_geneval" \
+experiment.output_dir="./experiments/ursa_geneval" 
+```
+**Note:** If you modify the batch size in the configuration, you must ensure that  
+`training.batch_size = num_prompts * num_images // num_gpus // num_batches`.
+
+### 2. Multi-node training
+```bash
+# Master node
+sh scripts/multi_node/geneval_grpo/main.sh
+
+# Other nodes
+sh scripts/multi_node/geneval_grpo/main1.sh
+sh scripts/multi_node/geneval_grpo/main2.sh
+sh scripts/multi_node/geneval_grpo/main3.sh
+```
+
+
+
+
+## Evaluations
+
+### GenEval
+
+#### 1. Sample prompt images
+```bash
+cd diffnext
+
+python ./evaluations/geneval/sample.py \
+--height 512 --width 512 \
+--guidance_scale 1.0 --num_inference_steps 25 \
+--ckpt /path/to/URSA-1.7B-IBQ512 \
+--tdir path/to/training_transformer/diffusion_pytorch_model.bin \
+--prompt_size 4 --outdir ./samples/geneval/URSA-1.7B-IBQ512
+```
+
+#### 2. Evaluation
+<IMAGE_FOLDER>=./samples/geneval/URSA-1.7B-IBQ512
+
+Please refer [GenEval](https://github.com/djghosh13/geneval?tab=readme-ov-file#evaluation) evaluation guide.
+
+### PickScore
+
+#### 1. Sample prompt images
+```bash
+cd diffnext
+
+python ./evaluations/pickscore/sample.py \
+--height 512 --width 512 \
+--guidance_scale 1.0 --num_inference_steps 25 \
+--ckpt /path/to/URSA-1.7B-IBQ512 \
+--tdir path/to/training_transformer/diffusion_pytorch_model.bin \
+--prompt_size 4 --outdir ./samples/geneval/URSA-1.7B-IBQ512
+```
+
+#### 2. Evaluation
+```bash
+python ./evaluations/geneval/evaluate.py \
+--image_root ./samples/pickscore/URSA-1.7B-IBQ512 \
+--out_file  ./samples/pickscore/outputs
+```
+
+
+## 📖 Citation
+If you find this repository useful, please consider giving a star ⭐ and citation 🦖:
+```
+@article{deng2025ursa,
+  title={Uniform Discrete Diffusion with Metric Path for Video Generation},
+  author={Deng, Haoge and Pan, Ting and Zhang, Fan and Liu, Yang and Luo, Zhuoyan and Cui, Yufeng and Shen, Chunhua and Shan, Shiguang and Zhang, Zhaoxiang and Wang, Xinlong},
+  journal={arXiv preprint arXiv:2510.24717},
+  year={2025}
+}
+```
+```
+@article{deng2024nova,
+  title={Autoregressive Video Generation without Vector Quantization},
+  author={Deng, Haoge and Pan, Ting and Diao, Haiwen and Luo, Zhengxiong and Cui, Yufeng and Lu, Huchuan and Shan, Shiguang and Qi, Yonggang and Wang, Xinlong},
+  journal={arXiv preprint arXiv:2412.14169},
+  year={2024}
+}
+```
+
+## 🤗 Acknowledgement
+
+We thank the repositories: 
+- [URSA](https://github.com/baaivision/URSA). 🐻URSA is the base model of UDM-GRPO.
+- [NOVA](https://github.com/baaivision/NOVA). ✨NOVA is the predecessor of 🐻URSA.
+- [CodeWithGPU](https://github.com/seetacloud/codewithgpu). CodeWithGPU library is the core of our data loading pipeline.
+
+## License
+Code and models are licensed under [Apache License 2.0](LICENSE).

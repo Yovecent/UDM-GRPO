@@ -1,0 +1,10 @@
+torch
+diffusers
+transformers>=4.57.1
+accelerate
+imageio
+imageio-ffmpeg
+omegaconf
+wandb
+scipy
+codewithgpu

@@ -1,0 +1,5 @@
+distributed_type: DEEPSPEED
+deepspeed_config:
+  deepspeed_multinode_launcher: standard
+  gradient_clipping: 1.0
+  zero_stage: 2
