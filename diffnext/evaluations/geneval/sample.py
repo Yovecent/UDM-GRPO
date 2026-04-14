@@ -32,7 +32,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="geneval sampling")
     parser.add_argument("--ckpt", type=str, default=None, help="checkpoint file")
     parser.add_argument("--prompt", type=str, default=None, help="prompt json file")
-    parser.add_argument("--prompt_type", type=str, default="dense_prompt", help="prompt type")
+    parser.add_argument("--prompt_type", type=str, default="prompt", help="prompt type")
     parser.add_argument("--height", type=int, default=1024, help="image height")
     parser.add_argument("--width", type=int, default=1024, help="image width")
     parser.add_argument("--guidance_scale", type=float, default=7, help="guidance scale")
