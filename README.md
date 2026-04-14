@@ -192,8 +192,8 @@ cd diffnext/evaluations/geneval
 torchrun --nproc_per_node=2 sample.py \
 --height 512 --width 512 \
 --guidance_scale 1.0 --num_inference_steps 25 \
---ckpt /share/project/denghaoge/wangjiaqi/data/model_ckpt/URSA-1.7B-IBQ512 \
---tdir /share/project/denghaoge/wangjiaqi/code/LR/UDM-GRPO-new1-main/diffnext/experiments/ursa_geneval/checkpoints/checkpoint-100/transformer/diffusion_pytorch_model.bin \
+--ckpt /path/to/URSA-1.7B-IBQ512 \
+--tdir /path/to/checkpoint-XXXX/transformer/diffusion_pytorch_model.bin \
 --outdir ./output/URSA-1.7B-IBQ512 \
 --distributed
 ```
