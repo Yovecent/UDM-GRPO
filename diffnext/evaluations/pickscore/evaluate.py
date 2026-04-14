@@ -51,7 +51,9 @@ if __name__ == "__main__":
     data_iter = list(map(model.batch_iter, (all_images, all_prompts)))
     for images, prompts in tqdm.tqdm(zip(*data_iter), total=len(data_iter[0])):
         images, prompts = [PIL.Image.open(_) for _ in images], list(prompts)
-        all_rewards += model.compute_score(images, prompts)
+        # PickScorer.compute_score returns a CUDA tensor; JSON needs Python floats.
+        batch_scores = model.compute_score(images, prompts).detach().float().cpu().tolist()
+        all_rewards.extend(batch_scores)
 
     mean_score = sum(all_rewards) / len(all_rewards)
     print("PickScore =", mean_score)

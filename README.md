@@ -67,7 +67,7 @@ pip install psutil==7.0.0, flash-attn==2.7.4.post1 --no-build-isolation
 
 | Model | Resolution| Download |
 |:-----:|:----------:|:------:|
-| URSA-1.7B-512 | 512x512 | [🤗 Hugging Face](https://huggingface.co/BAAI/URSA-1.7B-FSQ320)|
+| URSA-1.7B-IBQ512 | 512x512 | [🤗 Hugging Face](https://huggingface.co/BAAI/URSA-1.7B-IBQ512)|
 
 
 
