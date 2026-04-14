@@ -42,6 +42,7 @@ def parse_args():
     parser.add_argument("--vae_batch_size", type=int, default=1, help="vae batch size")
     parser.add_argument("--distributed", action="store_true", help="distrbuted mode?")
     parser.add_argument("--outdir", type=str, default="", help="write to")
+    parser.add_argument("--tdir",type=str,default="",help="Transformer checkpoint directory to override pipe.transformer")
     return parser.parse_args()
 
 
@@ -70,6 +71,13 @@ if __name__ == "__main__":
     # Pipeline.
     pipe = URSAPipeline.from_pretrained(args.ckpt, torch_dtype=dtype).to(device)
     pipe.set_progress_bar_config(disable=True)
+
+
+    # new transformer ckpt
+    state_dict = torch.load(args.tdir, map_location="cpu")
+    pipe.transformer.load_state_dict(state_dict)
+    pipe.transformer.to(dtype)
+
 
     for step in tqdm(range(0, len(prompt_list), args.prompt_size), disable=rank):
         samples, gen_args["generator"] = [], generator

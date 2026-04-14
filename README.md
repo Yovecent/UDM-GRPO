@@ -33,6 +33,11 @@ we propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our metho
 - 🥈 **SOTA Performance**: State-of-the-art performance across multiple T2I benchmarks.
 - 🥉 **High efficiency**: Reduced-Step and CFG-Free training strategy.
 
+## 📖 Table of Contents
+- [🔧 Installation](#installation)
+- [🥫 Data Preparation](#datapreparation)
+- [🤖 Training](#training)
+- [🖋️ Evaluation](#evaluation)
 
 
 ## 🔧 Installation
@@ -130,6 +135,7 @@ ocr = PaddleOCR(use_angle_cls=False, lang="en", use_gpu=False, show_log=False)
 change the ocr path in diffnext.rewards.reward_image.OCRScorer to your path
 
 ## 🥫 Data Preparation
+<a id="datapreparation"></a>
 
 GenEval 
 ```bash
@@ -175,23 +181,25 @@ sh scripts/multi_node/geneval_grpo/main3.sh
 
 
 ## 🖋️ Evaluations
+<a id="evaluation"></a>
 
 ### GenEval
 
 #### 1. Sample prompt images
 ```bash
-cd diffnext
+cd diffnext/evaluations/geneval
 
-python ./evaluations/geneval/sample.py \
+torchrun --nproc_per_node=2 sample.py \
 --height 512 --width 512 \
 --guidance_scale 1.0 --num_inference_steps 25 \
---ckpt /path/to/URSA-1.7B-IBQ512 \
---tdir path/to/training_transformer/diffusion_pytorch_model.bin \
---prompt_size 4 --outdir ./samples/geneval/URSA-1.7B-IBQ512
+--ckpt /share/project/denghaoge/wangjiaqi/data/model_ckpt/URSA-1.7B-IBQ512 \
+--tdir /share/project/denghaoge/wangjiaqi/code/LR/UDM-GRPO-new1-main/diffnext/experiments/ursa_geneval/checkpoints/checkpoint-100/transformer/diffusion_pytorch_model.bin \
+--outdir ./output/URSA-1.7B-IBQ512 \
+--distributed
 ```
 
 #### 2. Evaluation
-<IMAGE_FOLDER>=./samples/geneval/URSA-1.7B-IBQ512
+<IMAGE_FOLDER>=./output/URSA-1.7B-IBQ512
 
 Please refer [GenEval](https://github.com/djghosh13/geneval?tab=readme-ov-file#evaluation) evaluation guide.
 
@@ -199,21 +207,22 @@ Please refer [GenEval](https://github.com/djghosh13/geneval?tab=readme-ov-file#e
 
 #### 1. Sample prompt images
 ```bash
-cd diffnext
+cd diffnext/evaluations/pickscore
 
-python ./evaluations/pickscore/sample.py \
+torchrun --nproc_per_node=2 sample.py \
 --height 512 --width 512 \
 --guidance_scale 1.0 --num_inference_steps 25 \
 --ckpt /path/to/URSA-1.7B-IBQ512 \
---tdir path/to/training_transformer/diffusion_pytorch_model.bin \
---prompt_size 4 --outdir ./samples/geneval/URSA-1.7B-IBQ512
+--tdir /path/to/checkpoint-XXXX/transformer/diffusion_pytorch_model.bin \
+--outdir ./output/URSA-1.7B-IBQ512 \
+--distributed
 ```
 
 #### 2. Evaluation
 ```bash
-python ./evaluations/geneval/evaluate.py \
---image_root ./samples/pickscore/URSA-1.7B-IBQ512 \
---out_file  ./samples/pickscore/outputs
+python evaluate.py \
+--image_root ./output/URSA-1.7B-IBQ512 \
+--out_file  ./output/URSA-1.7B-IBQ512/result.json
 ```
 
 

@@ -21,8 +21,7 @@ import os
 import torch
 import tqdm
 import PIL.Image
-
-from diffnext.rewards.reward_image import PickScoreReward
+from diffnext.rewards.reward_image import PickScorer
 
 
 def parse_args():
@@ -48,11 +47,11 @@ if __name__ == "__main__":
         prompts = [json.load(open(data_path + "/metadata.jsonl"))["prompt"]] * len(images)
         all_images.extend(images), all_prompts.extend(prompts)
 
-    model = PickScoreReward(batch_size=args.batch_size).to(device)
+    model = PickScorer(batch_size=args.batch_size).to(device)
     data_iter = list(map(model.batch_iter, (all_images, all_prompts)))
     for images, prompts in tqdm.tqdm(zip(*data_iter), total=len(data_iter[0])):
         images, prompts = [PIL.Image.open(_) for _ in images], list(prompts)
-        all_rewards += model.compute_pickscore(images, prompts)["rewards"]
+        all_rewards += model.compute_score(images, prompts)
 
     mean_score = sum(all_rewards) / len(all_rewards)
     print("PickScore =", mean_score)
