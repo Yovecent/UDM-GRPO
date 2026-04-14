@@ -26,7 +26,7 @@ setup(
         "tqdm==4.67.1",
         "codewithgpu==0.2.8",
         "protobuf==3.20.3",
-        "wandb==0.15.12"
+        "wandb==0.15.12",
         "pydantic==2.10.6",  
         "requests",
         "matplotlib==3.10.0",
@@ -34,7 +34,7 @@ setup(
         "deepspeed==0.16.4",  
         "peft==0.10.0",       
         "bitsandbytes==0.45.3",
-        
+        "omegaconf==2.3.0",
         "aiohttp==3.11.13",
         "fastapi==0.115.11", 
         "uvicorn==0.34.0",

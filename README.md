@@ -9,8 +9,6 @@
 <a href="http://bitterdhg.github.io/URSA_page"><img src="https://img.shields.io/badge/Project-URSA-%237CB4F7.svg" alt="Project"></a>
 </p>
 
-<p align="center">1
-
 [Jiaqi Wang](https://scholar.google.com/citations?user=EFOtaJsAAAAJ&hl=zh-CN)<sup>1,2*</sup>, [Haoge Deng](https://scholar.google.com/citations?user=S2sbvjgAAAAJ&hl=en)<sup>2*</sup>, [Ting Pan](https://scholar.google.com/citations?&user=qQv6YbsAAAAJ)<sup>2*</sup>,  [Yang Liu](https://scholar.google.com/citations?user=9JcQ2hwAAAAJ&hl)<sup>2</sup>, [Chengyuan Wang](https://scholar.google.com/citations?user=VsJ39HMAAAAJ)<sup>2</sup>, [Fan Zhang](https://scholar.google.com/citations?user=VsJ39HMAAAAJ)<sup>2</sup>, [Yonggang Qi](https://scholar.google.com.tw/citations?user=pQNpf7cAAAAJ&hl=zh-CN&oi=ao)<sup>1†</sup>, [Xinlong Wang](https://scholar.google.com/citations?user=DPz0DjYAAAAJ&hl)<sup>2†</sup><br>
 <!-- [Chunhua Shen](https://scholar.google.com/citations?user=Ljk2BvIAAAAJ&hl)<sup>3</sup>, [Shiguang Shan](https://scholar.google.com/citations?user=Vkzd7MIAAAAJ&hl)<sup>2</sup>, [Zhaoxiang Zhang](https://scholar.google.com/citations?user=qxWfV6cAAAAJ&hl)<sup>1†</sup>, [Xinlong Wang](https://scholar.google.com/citations?user=DPz0DjYAAAAJ&hl)<sup>4†</sup><br> -->
 
@@ -87,16 +85,18 @@ pip install openmim==0.3.9 open-clip-torch==2.31.0 numpy==1.26.0 opencv-python==
 mim install mmengine mmcv-full==1.7.2 --no-build-isolation
 git clone https://github.com/open-mmlab/mmdetection.git
 cd mmdetection; git checkout 2.x
+pip install setuptools==78.1.1
 pip install -e . --no-build-isolation
 
 
 # Then
 mv ../raw_rl_data/object_names.txt .
 
-wget https://download.openmmlab.com/mmdetection/v2.0/mask2former/mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco/mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco_20220504_001756-743b7d99.pth
+wget https://download.openmmlab.com/mmdetection/v2.0/mask2former/mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco/mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco_20220504_001756-743b7d99.pth \
+-O ./mask2former_swin-s-p4-w7-224_lsj_8x2_50e_coco.pth
 
 ```
-#####  download the [timm/vit_large_patch14_clip_224.openai🤗](https://huggingface.co/timm/vit_large_patch14_clip_224.openai) and change the model_path in diffnext.rewards.reward_image.GenEvalScorer to your path
+#####  download the [timm/vit_large_patch14_clip_224.openai🤗](https://huggingface.co/timm/vit_large_patch14_clip_224.openai) and change the model_path in diffnext.rewards.reward_image.GenEvalScorer to your mmdetection path
 
 
 the mmdetection format should be
@@ -129,16 +129,17 @@ ocr = PaddleOCR(use_angle_cls=False, lang="en", use_gpu=False, show_log=False)
 ```
 change the ocr path in diffnext.rewards.reward_image.OCRScorer to your path
 
-## 🤖 Data Preparation
+## 🥫 Data Preparation
 
 GenEval 
 ```bash
 # First
-python  raw_rl_data/geneval/cache.py
+cd raw_rl_data/geneval
+python cache.py
 
 # Then Change the train_dataloader.params.dataset  in  ursa_1.7b_ibq512.yaml
 ```
-OCR and PickScore in the same way.
+The same way for PickScore and OCR.
 
 
 
@@ -173,7 +174,7 @@ sh scripts/multi_node/geneval_grpo/main3.sh
 
 
 
-## Evaluations
+## 🖋️ Evaluations
 
 ### GenEval
 

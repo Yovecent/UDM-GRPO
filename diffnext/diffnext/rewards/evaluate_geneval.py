@@ -37,9 +37,8 @@ def load_models(args):
     CKPT_PATH = os.path.join(args.model_path, f"{OBJECT_DETECTOR}.pth")
     object_detector = init_detector(CONFIG_PATH, CKPT_PATH, device=DEVICE)
     clip_arch = args.options.get("clip_model", "ViT-L-14")
-    clip_arch = os.path.join(args.model_path, "vit_large_patch14_clip_224.openai")
-    clip_arch = "local-dir:" + clip_arch
-    clip_model, _, transform = open_clip.create_model_and_transforms(clip_arch, device=DEVICE)
+    clip_path = os.path.join(args.model_path, "vit_large_patch14_clip_224.openai/open_clip_model.safetensors")
+    clip_model, _, transform = open_clip.create_model_and_transforms(clip_arch, pretrained=clip_path, device=DEVICE)
     tokenizer = open_clip.get_tokenizer(clip_arch)
     with open(os.path.join(args.model_path, "object_names.txt")) as cls_file:
         classnames = [line.strip() for line in cls_file]
