@@ -9,7 +9,7 @@ export WANDB_MODE=offline
 
 MASTER_PORT=111
 RANK=3
-MASTER_ADDR=172.24.44.36
+MASTER_ADDR=10.82.139.22
 
 accelerate launch \
     --config_file accelerate_configs/4_nodes_deepspeed.yaml \
