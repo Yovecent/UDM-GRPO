@@ -170,12 +170,12 @@ experiment.output_dir="./experiments/ursa_geneval"
 ### 2. Multi-node training
 ```bash
 # Master node
-sh scripts/multi_node/geneval_grpo/main.sh
+sh scripts/geneval_grpo/main.sh
 
 # Other nodes
-sh scripts/multi_node/geneval_grpo/main1.sh
-sh scripts/multi_node/geneval_grpo/main2.sh
-sh scripts/multi_node/geneval_grpo/main3.sh
+sh scripts/geneval_grpo/main1.sh
+sh scripts/geneval_grpo/main2.sh
+sh scripts/geneval_grpo/main3.sh
 ```
 
 
