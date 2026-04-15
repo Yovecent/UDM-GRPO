@@ -21,7 +21,7 @@ We propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our metho
 
 ## 🚀 News
 
-- ```[April 2026]``` Released [Paper](https://arxiv.org/abs/2510.24717) & [Project Page](https://yovecent.github.io/UDM-GRPO.github.io/).
+- ```[April 2026]``` Released [Paper](https://arxiv.org/abs/2510.24717) & [Project Page](https://yovecent.github.io/UDM-GRPO.github.io/) & [Model Weights](https://huggingface.co/collections/Yovecents/ursa-17b-ibq512-udm-grpo).
 
 ## ✨Hightlights
 
