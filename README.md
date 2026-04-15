@@ -21,17 +21,20 @@
 we propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our method is guided by two key insights: (i) treating the final clean sample as the action provides more accurate and stable optimization signals; and (ii) reconstructing trajectories via the diffusion forward process better aligns probability paths with the pretraining distribution. Additionally, we introduce two strategies, Reduced-Step and CFG-Free, to further improve training efficiency. **UDM-GRPO** significantly improves base model, [URSA](https://github.com/baaivision/URSA?tab=readme-ov-file), performance across multiple T2I tasks. 
 
 ## 🚀 News
-- ```[Feb 2026]``` Accepted by ICLR 2026 [[OpenReview]](https://openreview.net/forum?id=GFU5yCbILk).
-<!-- - ```[Jan 2026]``` Released [Training Guide](./docs/training.md).
-- ```[Oct 2025]``` 🎉 URSA is part of [Emu3.5](https://github.com/baaivision/Emu3.5) as DiDA (Discrete Diffusion Adaptation)!
-- ```[Oct 2025]``` Released <a href="https://huggingface.co/spaces/BAAI/nova-d48w1024-osp480"><b>TI2V</b></a> 🤗 Demo.
-- ```[Oct 2025]``` Released [Paper](https://arxiv.org/abs/2510.24717) & [Project Page](http://bitterdhg.github.io/URSA_page) & [Evaluation Guide](./docs/evaluation.md). -->
+
+- ```[April 2026]``` Released [Paper](https://arxiv.org/abs/2510.24717) & [Project Page](http://bitterdhg.github.io/URSA_page).
 
 ## ✨Hightlights
 
 - 🥇 **Novel Approach**: Correcting the action and trajectory to achieve the first method to integret UDM with RL.
 - 🥈 **SOTA Performance**: State-of-the-art performance across multiple T2I benchmarks.
 - 🥉 **High efficiency**: Reduced-Step and CFG-Free training strategy.
+
+## 🤗 Model
+| Task    | Model |
+| -------- | -------- |
+| GenEval     | [🤗GenEval](https://huggingface.co/Yovecents/URSA-1.7B-IBQ512-GenEval) |
+| PickScore    | [🤗PickScore](https://huggingface.co/Yovecents/URSA-1.7B-IBQ512-PickScore) |
 
 ## 📖 Table of Contents
 - [🔧 Installation](#installation)
@@ -59,7 +62,6 @@ pip install -e .
 pip install torch==2.5.1 xformers --index-url https://download.pytorch.org/whl/cu124
 
 pip install psutil==7.0.0, flash-attn==2.7.4.post1 --no-build-isolation
-
 ```
 
 
