@@ -190,7 +190,7 @@ sh scripts/geneval_grpo/main3.sh
 ```bash
 cd diffnext/evaluations/geneval
 
-torchrun --nproc_per_node=2 sample.py \
+torchrun --nproc_per_node=8 sample.py \
 --height 512 --width 512 \
 --guidance_scale 1.0 --num_inference_steps 25 \
 --ckpt /path/to/URSA-1.7B-IBQ512 \
@@ -210,7 +210,7 @@ Please refer [GenEval](https://github.com/djghosh13/geneval?tab=readme-ov-file#e
 ```bash
 cd diffnext/evaluations/pickscore
 
-torchrun --nproc_per_node=2 sample.py \
+torchrun --nproc_per_node=8 sample.py \
 --height 512 --width 512 \
 --guidance_scale 1.0 --num_inference_steps 25 \
 --ckpt /path/to/URSA-1.7B-IBQ512 \
