@@ -50,7 +50,7 @@ Clone this repository to local disk and install:
 ```bash
 git clone https://github.com/Yovecent/UDM-GRPO.git
 
-cd UDMGRPO 
+cd UDM-GRPO
 
 conda create -n UDMGRPO python=3.10
 
