@@ -17,7 +17,7 @@
 <br><br><image src="assets/GenEval_result.png"/>
 </div>
 
-we propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our method is guided by two key insights: (i) treating the final clean sample as the action provides more accurate and stable optimization signals; and (ii) reconstructing trajectories via the diffusion forward process better aligns probability paths with the pretraining distribution. Additionally, we introduce two strategies, Reduced-Step and CFG-Free, to further improve training efficiency. **UDM-GRPO** significantly improves base model, [URSA](https://github.com/baaivision/URSA?tab=readme-ov-file), performance across multiple T2I tasks. 
+We propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our method is guided by two key insights: (i) treating the final clean sample as the action provides more accurate and stable optimization signals; and (ii) reconstructing trajectories via the diffusion forward process better aligns probability paths with the pretraining distribution. Additionally, we introduce two strategies, Reduced-Step and CFG-Free, to further improve training efficiency. **UDM-GRPO** significantly improves base model, [URSA](https://github.com/baaivision/URSA?tab=readme-ov-file), performance across multiple T2I tasks. 
 
 ## 🚀 News
 
@@ -25,7 +25,7 @@ we propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our metho
 
 ## ✨Hightlights
 
-- 🥇 **Novel Approach**: Correcting the action and trajectory to achieve the first method to integret UDM with RL.
+- 🥇 **Novel Approach**: Correcting the action and trajectory to achieve the first method to integrate
 - 🥈 **SOTA Performance**: State-of-the-art performance across multiple T2I benchmarks.
 - 🥉 **High efficiency**: Reduced-Step and CFG-Free training strategy.
 
