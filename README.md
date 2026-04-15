@@ -32,8 +32,8 @@ We propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our metho
 ## 🤗 Model
 | Task    | Model |
 | -------- | -------- |
-| GenEval     | [🤗GenEval](https://huggingface.co/Yovecents/URSA-1.7B-IBQ512-GenEval) |
-| PickScore    | [🤗PickScore](https://huggingface.co/Yovecents/URSA-1.7B-IBQ512-PickScore) |
+| GenEval     | [🤗GenEval](https://huggingface.co/Yovecents/URSA-1.7B-IBQ512-UDMGRPO-GenEval) |
+| PickScore    | [🤗PickScore](https://huggingface.co/Yovecents/URSA-1.7B-IBQ512-UDMGRPO-PickScore) |
 
 ## 📖 Table of Contents
 - [🔧 Installation](#installation)
