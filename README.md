@@ -48,7 +48,7 @@ We propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our metho
 ### 1. Environment Set Up
 Clone this repository to local disk and install:
 ```bash
-git clone https://github.com/baaivision/UDMGRPO.git
+git clone https://github.com/Yovecent/UDM-GRPO.git
 
 cd UDMGRPO 
 
