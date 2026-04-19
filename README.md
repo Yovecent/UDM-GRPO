@@ -25,7 +25,7 @@ We propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our metho
 
 ## ✨Hightlights
 
-- 🥇 **Novel Approach**: Correcting the action and trajectory to achieve the first method to integrate
+- 🥇 **Novel Approach**: Correcting the action and trajectory to achieve the first method to integrate UDM with GRPO.
 - 🥈 **SOTA Performance**: State-of-the-art performance across multiple T2I benchmarks.
 - 🥉 **High efficiency**: Reduced-Step and CFG-Free training strategy.
 
