@@ -230,6 +230,14 @@ python evaluate.py \
 ## 📖 Citation
 If you find this repository useful, please consider giving a star ⭐ and citation 🦖:
 ```
+@article{wang2026udmgrpo,
+  title={UDM-GRPO: Stable and Efficient Group Relative Policy Optimization for Uniform Discrete Diffusion Models},
+  author={Wang, Jiaqi and Deng, Haoge and Pan, Ting and Liu, Yang and Wang, Chengyuan and Zhang, Fan and Qi, Yonggang and Wang, Xinlong},
+  journal={arXiv preprint arXiv:2604.18518 },
+  year={2026}
+}
+```
+```
 @article{deng2025ursa,
   title={Uniform Discrete Diffusion with Metric Path for Video Generation},
   author={Deng, Haoge and Pan, Ting and Zhang, Fan and Liu, Yang and Luo, Zhuoyan and Cui, Yufeng and Shen, Chunhua and Shan, Shiguang and Zhang, Zhaoxiang and Wang, Xinlong},
