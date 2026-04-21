@@ -3,7 +3,7 @@
 <h1>UDM-GRPO: Stable and Efficient Group Relative Policy Optimization for Uniform Discrete Diffusion Models</h1>
 
 <p align="center">
-<a href="https://arxiv.org/abs/2604.18518"><img src="https://img.shields.io/badge/ArXiv-2510.24717-%23840707.svg" alt="ArXiv"></a>
+<a href="https://arxiv.org/abs/2604.18518"><img src="https://img.shields.io/badge/ArXiv-2604.18518-%23840707.svg" alt="ArXiv"></a>
 <a href="https://huggingface.co/collections/Yovecents/ursa-17b-ibq512-udm-grpo"><img src="https://img.shields.io/badge/🤗 Weights-UDMGRPO-rgb(166,109,59).svg" alt=""></a>
 <a href="https://yovecent.github.io/UDM-GRPO.github.io/"><img src="https://img.shields.io/badge/Project-UDMGRPO-%237CB4F7.svg" alt="Project"></a>
 </p>
