@@ -20,7 +20,7 @@
 We propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our method is guided by two key insights: (i) treating the final clean sample as the action provides more accurate and stable optimization signals; and (ii) reconstructing trajectories via the diffusion forward process better aligns probability paths with the pretraining distribution. Additionally, we introduce two strategies, Reduced-Step and CFG-Free, to further improve training efficiency. **UDM-GRPO** significantly improves base model, [URSA](https://github.com/baaivision/URSA?tab=readme-ov-file), performance across multiple T2I tasks. 
 
 ## 🚀 News
-
+- ```[April 2026]``` 🎉 Accepted by ICML 2026 (Spotlight).
 - ```[April 2026]``` Released [Paper](https://arxiv.org/abs/2604.18518) & [Project Page](https://yovecent.github.io/UDM-GRPO.github.io/) & [Model Weights](https://huggingface.co/collections/Yovecents/ursa-17b-ibq512-udm-grpo).
 
 ## ✨Hightlights
