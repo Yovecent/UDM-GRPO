@@ -19,7 +19,20 @@
 
 We propose **UDM-GRPO**, the first framework to integrate UDM with RL. Our method is guided by two key insights: (i) treating the final clean sample as the action provides more accurate and stable optimization signals; and (ii) reconstructing trajectories via the diffusion forward process better aligns probability paths with the pretraining distribution. Additionally, we introduce two strategies, Reduced-Step and CFG-Free, to further improve training efficiency. **UDM-GRPO** significantly improves base model, [URSA](https://github.com/baaivision/URSA?tab=readme-ov-file), performance across multiple T2I tasks. 
 
+## 🏆 Leaderboard
+<a id="leaderboard"></a>
+
+Thanks to [Niels Rogge](https://github.com/Yovecent/UDM-GRPO/issues/1) (🤗 Hugging Face) for indexing and verifying **UDM-GRPO** on [Paper With Code](https://paperswithcode.co/).
+
+
+Our **URSA (w / UDM-GRPO)** currently ranks **#3 🥉on the GenEval benchmark**. 
+
+[![PWC](https://img.shields.io/badge/Papers%20with%20Code-%233%20on%20GenEval-%2321CBCE.svg?logo=paperswithcode)](https://paperswithcode.co/benchmark/geneval?task=image-generation&eval=22840)
+
+
+
 ## 🚀 News
+- ```[Aug 2026]``` UDM-GRPO rank #3 on [GenEval Benchmark](https://paperswithcode.co/benchmark/geneval?task=image-generation&eval=22840). 
 - ```[May 2026]``` 🎉 Accepted by ICML 2026 (Spotlight).
 - ```[Apr 2026]``` Released [Paper](https://arxiv.org/abs/2604.18518) & [Project Page](https://yovecent.github.io/UDM-GRPO.github.io/) & [Model Weights](https://huggingface.co/collections/Yovecents/ursa-17b-ibq512-udm-grpo).
 
@@ -259,6 +272,7 @@ If you find this repository useful, please consider giving a star ⭐ and citati
 We thank the repositories: 
 - [URSA](https://github.com/baaivision/URSA). 🐻URSA is the base model of UDM-GRPO.
 - [NOVA](https://github.com/baaivision/NOVA). ✨NOVA is the predecessor of 🐻URSA.
+- [Flow-GRPO](https://github.com/yifan123/flow_grpo). Flow-GRPO provides the open-source diffusion RL codebase.
 - [CodeWithGPU](https://github.com/seetacloud/codewithgpu). CodeWithGPU library is the core of our data loading pipeline.
 
 ## License
